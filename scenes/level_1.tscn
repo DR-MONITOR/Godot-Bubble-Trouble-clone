@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://5dcraxyu1kci"]
+
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_7g8yv"]
+[ext_resource type="PackedScene" uid="uid://dclhwh6krx15u" path="res://scenes/player.tscn" id="1_ncm34"]
+[ext_resource type="Texture2D" uid="uid://g34br0kcps38" path="res://assets/white_tile.png" id="2_x1awi"]
+[ext_resource type="PackedScene" uid="uid://801itcp58fit" path="res://scenes/ball.tscn" id="3_mo2rb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7qbj"]
+size = Vector2(1186.5, 80)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_7g8yv")
+
+[node name="BG_image" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="BG_image"]
+self_modulate = Color(0.811765, 0.811765, 0.811765, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.0
+offset_bottom = 16.0
+texture = ExtResource("2_x1awi")
+stretch_mode = 1
+flip_h = true
+
+[node name="Player" parent="." instance=ExtResource("1_ncm34")]
+position = Vector2(556, 103)
+collision_mask = 2
+
+[node name="ball" parent="." instance=ExtResource("3_mo2rb")]
+position = Vector2(207, 116)
+
+[node name="floor" type="StaticBody2D" parent="."]
+position = Vector2(572, 403)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(5, 244)
+shape = SubResource("RectangleShape2D_v7qbj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="floor"]
+position = Vector2(4, -404)
+shape = SubResource("RectangleShape2D_v7qbj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="floor"]
+position = Vector2(580, -190)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_v7qbj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="floor"]
+position = Vector2(-572, -178)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_v7qbj")
+
+[node name="ForeGround Image" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="ForeGround Image"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = -1112.0
+offset_bottom = 56.0
+texture = ExtResource("2_x1awi")
+expand_mode = 1
+stretch_mode = 1
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="ForeGround Image"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.0
+offset_left = 1112.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 48.0
+texture = ExtResource("2_x1awi")
+expand_mode = 1
+stretch_mode = 1
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="ForeGround Image"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = -600.0
+texture = ExtResource("2_x1awi")
+expand_mode = 1
+stretch_mode = 1
+flip_h = true
+
+[node name="TextureRect4" type="TextureRect" parent="ForeGround Image"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.0
+offset_left = -40.0
+offset_top = 607.0
+offset_right = 40.0
+offset_bottom = 48.0
+texture = ExtResource("2_x1awi")
+expand_mode = 1
+stretch_mode = 1
+flip_h = true

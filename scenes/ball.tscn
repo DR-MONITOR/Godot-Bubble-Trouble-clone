@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://801itcp58fit"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_7knef"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3bxun"]
+radius = 22.6716
+
+[node name="ball" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_7knef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_3bxun")
+disabled = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.952339, 0.1569, 0.414335, 1)
+polygon = PackedVector2Array(-23, -19, -24, 6, -8, 20, 18, 17, 28, -2, 16, -25, 2, -28)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = -13.0
+offset_right = 22.0
+offset_bottom = 10.0
+
+[node name="ball_texture" type="Sprite2D" parent="."]
+texture_filter = 1
