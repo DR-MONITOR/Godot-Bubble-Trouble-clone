@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 500.0
+const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 980.0
 @onready var anim = $AnimatedSprite2D
@@ -33,7 +33,7 @@ func _physics_process(delta):
 		anim.flip_h = direction < 0  # Flip horizontally when moving left
 	else:
 		anim.stop()
-		anim.frame = 0  # Optional: Reset to the first frame when idle
+		anim.play("Stop")  # Optional: Reset to the first frame when idle
 
 	# Move and clamp position
 	move_and_slide()

@@ -14,9 +14,9 @@ monitorable = false
 script = ExtResource("1_21omr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.23578e-12, 4)
+position = Vector2(-3.63798e-12, 4.76837e-07)
 rotation = 1.57079
-scale = Vector2(0.05, 0.1)
+scale = Vector2(0.038463, 0.1)
 texture = ExtResource("2_cg3ei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
