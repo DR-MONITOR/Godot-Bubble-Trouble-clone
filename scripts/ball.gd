@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+signal checkBalls
 @export var size = 3  # 3 = large, 2 = medium, 1 = small
 @export var bounciness = 150
 var bounce_force = -bounciness / size
@@ -48,6 +49,7 @@ func setup_bubble_properties() -> void:
 		b_texture.scale = Vector2(scale_factor2, scale_factor2)  # Apply scale as Vector2
 
 func split():
+	GameManager.score += 1
 	if size > 1:
 		spawn_smaller_bubbles()
 	queue_free()

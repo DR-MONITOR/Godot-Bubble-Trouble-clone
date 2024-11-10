@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal hurt
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 980.0
@@ -9,6 +10,7 @@ const GRAVITY = 980.0
 
 # Declare an invincibility flag and a reference to the Timer node
 var is_invincible = false
+var ballsonscreen
 @onready var invincibility_timer = $Timer
 
 func _physics_process(delta):
@@ -62,10 +64,12 @@ func shoot():
 # Callback to re-enable shooting when the arrow goes out of bounds
 func _on_arrow_out_of_bounds():
 	can_shoot = true
+	pass # Replace with function body.
 
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("bubbles") and not is_invincible:
+		hurt.emit()
 		if GameManager.player_health > 0:
 			GameManager.player_health -= 1
 			print("Player Health:", GameManager.player_health)
@@ -76,6 +80,7 @@ func _on_hitbox_body_entered(body):
 			
 			# Check if health has reached zero
 			if GameManager.player_health == 0:
+				
 				GameManager.game_over = true
 
 func _on_timer_timeout():

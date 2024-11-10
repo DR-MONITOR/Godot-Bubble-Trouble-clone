@@ -122,10 +122,11 @@ stretch_mode = 1
 flip_h = true
 
 [node name="LevelUI" parent="." instance=ExtResource("5_pja8i")]
-process_mode = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -1.0
 offset_right = 1174.0
 offset_bottom = 676.0
 
 [connection signal="hurt" from="Player" to="LevelUI" method="_on_player_hurt"]
-[connection signal="checkBalls" from="ball" to="." method="_on_ball_check_balls"]
