@@ -1,7 +1,8 @@
 extends Control
 
-const heartText = preload("res://assets/pixel-heart-2779422_1280.png") #Heart Texture
+const heartText = preload("res://assets/pixel-heart-2779422_1280.png") # Heart Texture
 var timeLeft
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$TimerLabel.show()
@@ -16,23 +17,21 @@ func _ready() -> void:
 	$GameOver.hide()
 	$Won.hide()
 	$Replay.hide()
-	add_hearts(GameManager.player_health)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$TimerLabel.text = str(int($Timer.time_left))
 	$Score.text = "SCORE: " + str(GameManager.score)
-	
+	update_hearts(GameManager.player_health)
 	if GameManager.won == true:
 		timeLeft = int($Timer.time_left)
 		var completionTime = GameManager.time - int($Timer.time_left)
 		var bonus = 0
 		if timeLeft > GameManager.time - 10:
 			bonus = 50
-		elif timeLeft > GameManager.time/2:
+		elif timeLeft > GameManager.time / 2:
 			bonus = 10
-		elif timeLeft > GameManager.time/3:
+		elif timeLeft > GameManager.time / 3:
 			bonus = 5
 		var finalscore = GameManager.score + GameManager.player_health + bonus
 		$Won.show()
@@ -44,38 +43,45 @@ func _process(delta: float) -> void:
 	if GameManager.game_over == true:
 		$GameOver.show()
 		$Retry.show()
-	pass
 
-#removes hearts based on 'amount'
-func remove_hearts(amount : int):
+# Updates the hearts based on the player's current health
+func update_hearts(current_health: int):
 	var hearts = $Hearts.get_children()
-	var lastHeart = hearts.size() - 1
-	if lastHeart < 0:
+	var current_heart_count = hearts.size()
+	
+	if current_heart_count < current_health:
+		add_hearts(current_health - current_heart_count)
+	elif current_heart_count > current_health:
+		remove_hearts(current_heart_count - current_health)
+
+# Removes hearts based on 'amount'
+func remove_hearts(amount: int):
+	var hearts = $Hearts.get_children()
+	var last_heart = hearts.size() - 1
+	if last_heart < 0:
 		return
-	for i in amount:
-		$Hearts.remove_child(hearts[lastHeart])
-		hearts[lastHeart].queue_free()
-		lastHeart -= 1
+	for i in range(amount):
+		$Hearts.remove_child(hearts[last_heart])
+		hearts[last_heart].queue_free()
+		last_heart -= 1
 
-
-#adds 'n' number of hearts
-func add_hearts(n : int):
-	for i in n:
+# Adds 'n' number of hearts
+func add_hearts(n: int):
+	for i in range(n):
 		var heart = TextureRect.new()
-		heart.set_name(str(i))
 		heart.texture = heartText
 		$Hearts.add_child(heart)
 
-#called when player is hurt
+# Called when player is hurt
 func _on_player_hurt() -> void:
-	remove_hearts(1)
+	GameManager.player_health -= 1
+	update_hearts(GameManager.player_health)
 
-#called when retry button is pressed
+# Called when retry button is pressed
 func _on_retry_pressed() -> void:
 	restart()
 
-
-#reloads the scene
+# Reloads the scene
 func restart():
 	GameManager.won = false
 	GameManager.score = 0
@@ -83,7 +89,6 @@ func restart():
 	GameManager.game_over = false
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-
 
 func _on_timer_timeout() -> void:
 	GameManager.game_over = true

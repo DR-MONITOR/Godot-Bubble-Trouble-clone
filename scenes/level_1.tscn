@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://5dcraxyu1kci"]
+[gd_scene load_steps=9 format=3 uid="uid://5dcraxyu1kci"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_7g8yv"]
 [ext_resource type="PackedScene" uid="uid://dclhwh6krx15u" path="res://scenes/player.tscn" id="1_ncm34"]
+[ext_resource type="PackedScene" path="res://scenes/heart_powerup.tscn" id="2_dgg2m"]
 [ext_resource type="Texture2D" uid="uid://g34br0kcps38" path="res://assets/white_tile.png" id="2_x1awi"]
 [ext_resource type="PackedScene" uid="uid://801itcp58fit" path="res://scenes/ball.tscn" id="3_mo2rb"]
+[ext_resource type="PackedScene" uid="uid://blfophxjbgwu5" path="res://scenes/powerup.tscn" id="3_w2u5f"]
 [ext_resource type="PackedScene" uid="uid://4m42pa38n05q" path="res://scenes/level_ui.tscn" id="5_pja8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7qbj"]
@@ -11,6 +13,10 @@ size = Vector2(1186.5, 80)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_7g8yv")
+
+[node name="heart_powerup" parent="." instance=ExtResource("2_dgg2m")]
+
+[node name="powerup" parent="." instance=ExtResource("3_w2u5f")]
 
 [node name="BG_image" type="Control" parent="."]
 layout_mode = 3
@@ -34,7 +40,13 @@ position = Vector2(556, 103)
 collision_mask = 2
 
 [node name="ball" parent="." instance=ExtResource("3_mo2rb")]
-position = Vector2(207, 116)
+position = Vector2(202, 144)
+
+[node name="ball2" parent="." instance=ExtResource("3_mo2rb")]
+position = Vector2(337, 53)
+
+[node name="ball3" parent="." instance=ExtResource("3_mo2rb")]
+position = Vector2(841, 67)
 
 [node name="floor" type="StaticBody2D" parent="."]
 position = Vector2(572, 403)
@@ -126,6 +138,3 @@ process_mode = 3
 offset_left = -1.0
 offset_right = 1174.0
 offset_bottom = 676.0
-
-[connection signal="hurt" from="Player" to="LevelUI" method="_on_player_hurt"]
-[connection signal="checkBalls" from="ball" to="." method="_on_ball_check_balls"]

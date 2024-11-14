@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4mygg7uwk336"]
+
+[ext_resource type="Texture2D" uid="uid://d2h44qjvj5fd0" path="res://assets/heart_powerup.png" id="1_1g6vb"]
+[ext_resource type="Script" path="res://scripts/heart_powerup.gd" id="1_bc37v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmlun"]
+radius = 12.0
+
+[node name="heart_powerup" type="Area2D"]
+script = ExtResource("1_bc37v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hmlun")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("1_1g6vb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

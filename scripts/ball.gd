@@ -1,11 +1,12 @@
 extends RigidBody2D
 
-signal checkBalls
 @export var size = 3  # 3 = large, 2 = medium, 1 = small
 @export var bounciness = 150
 var bounce_force = -bounciness / size
 @onready var b_texture = $ball_texture  # Make sure this points to a Sprite or TextureRect
 @onready var BubbleScene = preload("res://scenes/ball.tscn")
+@onready var powerupscene = preload("res://scenes/powerup.tscn")
+@onready var healthpowerupscene = preload("res://scenes/heart_powerup.tscn")
 
 func _ready() -> void:
 	add_to_group("bubbles")
@@ -49,10 +50,21 @@ func setup_bubble_properties() -> void:
 		b_texture.scale = Vector2(scale_factor2, scale_factor2)  # Apply scale as Vector2
 
 func split():
-	GameManager.score += 1
+	GameManager.score +=100
 	if size > 1:
 		spawn_smaller_bubbles()
+	if randf() < 0.3:
+		spawn_power_up()
 	queue_free()
+
+func spawn_power_up():
+	var power_up_instance
+	if randi() % 2 == 0:
+		power_up_instance = powerupscene.instantiate()
+	else:
+		power_up_instance = healthpowerupscene.instantiate()
+	power_up_instance.position = position
+	get_parent().call_deferred("add_child",power_up_instance)
 
 func spawn_smaller_bubbles() -> void:
 	for i in [-1, 1]:
