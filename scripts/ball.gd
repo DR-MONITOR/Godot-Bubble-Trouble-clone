@@ -9,6 +9,7 @@ var bounce_force = -bounciness / size
 @onready var healthpowerupscene = preload("res://scenes/heart_powerup.tscn")
 
 func _ready() -> void:
+	$ball_texture.modulate = Color8(randi_range(0,255),randi_range(0,255),randi_range(0,255))
 	add_to_group("bubbles")
 	setup_bubble_properties()
 	$Label.text = str(size)
@@ -42,7 +43,7 @@ func setup_bubble_properties() -> void:
 
 	# Debug print to check if b_texture is correctly assigned
 	if b_texture:
-		b_texture.texture = preload("res://assets/red_ball.png")
+		b_texture.texture = preload("res://assets/marble_ball.png")
 		var target_radius = 60 * (size / 3.0)  # Target radius based on size
 		var scale_factor2 = target_radius / 120  # Scaling factor based on original radius of 60
 
