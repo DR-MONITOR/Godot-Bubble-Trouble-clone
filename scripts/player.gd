@@ -33,7 +33,7 @@ func _physics_process(delta):
 		anim.play("Walk_right")
 		anim.flip_h = direction < 0  # Flip horizontally when moving left
 	else:
-		anim.stop()
+		anim.play("Stop")
 		anim.frame = 0  # Optional: Reset to the first frame when idle
 
 	# Move and clamp position
