@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4mygg7uwk336"]
+[gd_scene load_steps=5 format=3 uid="uid://c4mygg7uwk336"]
 
 [ext_resource type="Texture2D" uid="uid://d2h44qjvj5fd0" path="res://assets/heart_powerup.png" id="1_1g6vb"]
 [ext_resource type="Script" path="res://scripts/heart_powerup.gd" id="1_bc37v"]
+[ext_resource type="AudioStream" uid="uid://cpm3b3xeno1dw" path="res://assets/this$one.mp3" id="3_yeny3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hmlun"]
 radius = 12.0
@@ -16,5 +17,9 @@ shape = SubResource("CircleShape2D_hmlun")
 position = Vector2(0, 1)
 scale = Vector2(0.045, 0.045)
 texture = ExtResource("1_1g6vb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yeny3")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
