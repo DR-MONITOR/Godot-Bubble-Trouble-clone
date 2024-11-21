@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Bubble Trouble Clone"
+run/main_scene="res://scenes/level_1.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://scripts/global scripts/game_manager.gd"
+Musicplayer="*res://musicplayer.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5dcraxyu1kci"]
+[gd_scene load_steps=10 format=3 uid="uid://5dcraxyu1kci"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_7g8yv"]
 [ext_resource type="PackedScene" uid="uid://dclhwh6krx15u" path="res://scenes/player.tscn" id="1_ncm34"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://801itcp58fit" path="res://scenes/ball.tscn" id="3_mo2rb"]
 [ext_resource type="PackedScene" uid="uid://blfophxjbgwu5" path="res://scenes/powerup.tscn" id="3_w2u5f"]
 [ext_resource type="PackedScene" uid="uid://4m42pa38n05q" path="res://scenes/level_ui.tscn" id="5_pja8i"]
+[ext_resource type="AudioStream" uid="uid://6rv8sa3qpuuc" path="res://assets/BACKGROUND2.mp3" id="8_rdybf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7qbj"]
 size = Vector2(1186.5, 80)
@@ -138,3 +139,8 @@ process_mode = 3
 offset_left = -1.0
 offset_right = 1174.0
 offset_bottom = 676.0
+
+[node name="BGMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_rdybf")
+volume_db = -10.762
+autoplay = true
